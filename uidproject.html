@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>member and teams</title>
+    <style>
+        #container-wrapper {
+            text-align: right; /* Align container to the right */
+            padding-right: 20px; /* Add some right padding */
+        }
+
+        .box-container {
+            margin: 20px 0;/*this can be changed for adjusyting the containers*/
+            display: inline-block; /* Display as inline-block to make it align to the right */
+        }
+
+        .box {
+            width: 200px;
+            height: 150px;
+            border-radius: 10px;
+            margin: 20px 20px 0 0;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgb(240, 240, 242);
+            transition: transform 0.3s ease;/*used for smooth transition*/
+            color: #fff;
+            overflow: hidden;/*this is used for the text to be inside the box*/
+            text-align: left;
+            vertical-align: top; /* Align the boxes to the top */
+        }
+
+        .box:hover {
+            transform: translateX(22px);
+            /*this for the animation*/
+            
+        }
+
+        .writings {
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            text-decoration: solid;
+            color: rgb(60, 53, 53);
+        }
+
+        body {
+            background-color: #a1ffce;
+            color: red;
+            text-align: right;
+        }
+    
+            .button {
+  --main-focus: #2d8cf0;
+  --font-color: #323232;
+  --bg-color-sub: #dedede;
+  --bg-color: #eee;
+  --main-color: #323232;
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  background-color: var(--bg-color);
+  border-radius: 10px;
+  overflow: hidden;
+  right: 370px;
+  top: 100px;
+}
+
+.button, .button__icon, .button__text {
+  transition: all 0.3s;
+}
+
+.button .button__text {
+  transform: translateX(22px);
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: var(--bg-color-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button .svg {
+  width: 20px;
+  fill: var(--main-color);
+}
+
+.button:hover {
+  background: var(--bg-color);
+}
+
+.button:hover .button__text {
+  color: transparent;
+}
+
+.button:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px var(--main-color);
+}
+
+    </style>
+</head>
+<body>
+  <div id="container-wrapper"> <!--defualt boxes-->
+    <div class="box-container">
+        <div class="box" style="background: rgb(54, 245, 165);"> 
+            <p class="writings">Task Name: Desiger</p>
+            <p class="writings">Due Date: 12-3-24:12:4:24</p>
+            <p class="writings">Active Members: Vicky Adi, Lol</p>
+        </div>
+        <div class="box" style="background: rgb(82, 223, 171);"> 
+            <p class="writings">Task Name: Planner</p>
+            <p class="writings">Due Date: 12:3:24-13:4:24</p>
+            <p class="writings">Active Members: idk,idk2,idk3</p>
+        </div>
+    </div>
+</div>
+    <div id="container-wrapper">
+        <div class="box-container">
+            <!--boxes will be appended here -->
+        </div>
+    </div>
+    
+<button onclick="createBox()" class="button" type="button">
+    <span class="button__text">Add Item</span>
+    <span class="button__icon"><svg class="svg" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+  </button>
+    <script>
+        function getRandomColor() {
+            var colors = [ '#62F4A4', '#5CDB95', '#34E382','#44C47D']; // green shades 
+            var randomIndex = Math.floor(Math.random() * colors.length);
+            return colors[randomIndex];
+        }
+
+        function createBox() {
+            var taskName = prompt("Enter the task name:");
+            var dueDate = prompt("Enter the due date:");
+            var members = prompt("Enter a comma-separated list of active members (limit 3):");
+            var membersArray = members.split(',').map(member => member.trim());//this is for setting the limit of active members to 3
+            var limitedMembers = membersArray.slice(0, 3).join(', ');
+            var box = document.createElement("div");
+            box.classList.add("box");//adds the box properties
+            var taskNamePara = document.createElement("p");
+            taskNamePara.textContent = "Task Name: " + taskName;
+            taskNamePara.classList.add("writings");//adds the text properties
+            var dueDatePara = document.createElement("p");
+            dueDatePara.textContent = "Due Date: " + dueDate;
+            dueDatePara.classList.add("writings");
+            var membersPara = document.createElement("p");
+            membersPara.textContent = "Active Members: " + limitedMembers;
+            membersPara.classList.add("writings");
+            var randomColor = getRandomColor();//setting a random color for the box
+            box.style.background = randomColor; //set the background color
+            box.appendChild(taskNamePara);
+            box.appendChild(dueDatePara);
+            box.appendChild(membersPara);
+            document.querySelector('.box-container').appendChild(box);//this adds the container properties
+        }
+    </script>
+</body>
+</html>
