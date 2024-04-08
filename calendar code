@@ -1,0 +1,200 @@
+<!-- calendar start -->
+                <div class="calendar">
+                    <!-- calendarHead start -->
+                    <div class="calendarHead">
+                        <h2>October 2022</h2>
+                        <div class="calendarIcon">
+                            <span class="material-symbols-outlined">
+                                chevron_left
+                            </span>
+                            <span class="material-symbols-outlined">
+                                chevron_right
+                            </span>
+                        </div>
+                    </div>
+                    <!-- calendarHead end -->
+                    <!-- calendarData start -->
+                    <div class="calendarData">
+                        <ul class="weeks">
+                            <li>Sun</li>
+                            <li>Mon</li>
+                            <li>Tue</li>
+                            <li>Wed</li>
+                            <li>Thu</li>
+                            <li>Fri</li>
+                            <li>Sat</li>
+                        </ul>
+                        <ul class="days">
+                            <li class="inactive">25</li>
+                            <li class="inactive">26</li>
+                            <li class="inactive">27</li>
+                            <li class="inactive">28</li>
+                            <li class="inactive">29</li>
+                            <li class="inactive">30</li>
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li>10</li>
+                            <li>11</li>
+                            <li>12</li>
+                            <li>13</li>
+                            <li>14</li>
+                            <li>15</li>
+                            <li>16</li>
+                            <li>17</li>
+                            <li>18</li>
+                            <li>19</li>
+                            <li>20</li>
+                            <li class="active">21</li>
+                            <li>22</li>
+                            <li>23</li>
+                            <li>24</li>
+                            <li>25</li>
+                            <li>26</li>
+                            <li>27</li>
+                            <li>28</li>
+                            <li>29</li>
+                            <li>30</li>
+                            <li>31</li>
+                            <li class="inactive">1</li>
+                            <li class="inactive">2</li>
+                            <li class="inactive">3</li>
+                            <li class="inactive">4</li>
+                            <li class="inactive">5</li>
+                        </ul>
+                    </div>
+                    <!-- calendarData end -->
+                </div>
+                <!-- calendar end -->
+
+
+
+
+
+
+
+
+/////style//////////
+/* calendar start */
+.container .right main .calendar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 1);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    box-shadow: rgba(255, 255, 255, 0.5) 35px 35px 68px 0px,
+        inset rgba(255, 255, 255, 0.6) -8px -8px 16px 0px,
+        inset rgb(255, 255, 255) 0px 11px 28px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    grid-row: 1 / 4;
+    grid-column: 3 / 4;
+    padding: 20px;
+    gap: 10px;
+}
+.container .right main .calendar .calendarHead {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.container .right main .calendar .calendarHead h2 {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    line-height: 18px;
+    color: #000;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.container .right main .calendar .calendarHead .calendarIcon {
+    position: relative;
+    display: flex;
+    gap: 10px;
+}
+.container .right main .calendar .calendarHead .calendarIcon .material-symbols-outlined {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border: 3px solid #9fa7d6;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #9fa7d6;
+    font-size: 1.3em;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .right main .calendar .calendarData {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.container .right main .calendar .calendarData .weeks {
+    position: relative;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.container .right main .calendar .calendarData .weeks li {
+    list-style: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+}
+.container .right main .calendar .calendarData .days {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 30px);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    place-items: center;
+}
+.container .right main .calendar .calendarData .days li {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s ease;
+}
+.container .right main .calendar .calendarData .days li.inactive {
+    color: #999;
+}
+.container .right main .calendar .calendarData .days li:hover {
+    background: #999;
+    color: #fff;
+    transition: 0s;
+}
+.container .right main .calendar .calendarData .days li.active {
+    background: #6577ff;
+    color: #fff;
+}
+/* calendar end */
+
+
+
+
+
+
+
