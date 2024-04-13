@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.project-tasks {
+  display: flex;
+}
+
+.project-column {
+  width: 300px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 0 10px;
+}
+
+.project-column-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.tasks {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.task {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.task__tags {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.task__tag {
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #ddd;
+}
+
+.task__stats {
+  display: flex;
+  align-items: center;
+}
+
+.task__stats time {
+  margin-right: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="project-tasks">
+          <div class="project-column">
+            <div class="project-column-heading">
+              <h2 class="project-column-heading__title">In Progress</h2>
+            </div>
+            <div id="inProgressTasks" class="tasks"></div>
+          </div>
+          <!-- Add other columns here -->
+        </div>
+      </div>
+      <script>
+        // Create a new task object
+function Task(name, date) {
+  this.name = name;
+  this.date = date;
+}
+
+// Create a new task element
+Task.prototype.createTaskElement = function() {
+  const taskElement = document.createElement('div');
+  taskElement.className = 'task';
+  taskElement.draggable = true;
+
+  const taskTags = document.createElement('div');
+  taskTags.className = 'task__tags';
+  const taskTag = document.createElement('span');
+  taskTag.className = 'task__tag task__tag--copyright';
+  taskTag.textContent = 'Website management';
+  taskTags.appendChild(taskTag);
+  taskElement.appendChild(taskTags);
+
+  const taskNameElement = document.createElement('p');
+  taskNameElement.textContent = this.name;
+  taskElement.appendChild(taskNameElement);
+
+  const taskStats = document.createElement('div');
+  taskStats.className = 'task__stats';
+  const taskDateElement = document.createElement('time');
+  taskDateElement.datetime = this.date;
+  taskDateElement.textContent = this.date;
+  taskStats.appendChild(taskDateElement);
+  taskElement.appendChild(taskStats);
+
+  return taskElement;
+}
+
+// Add a new task to the "In Progress" column
+function addTaskToInProgress(name, date) {
+  const task = new Task(name, date);
+  const taskElement = task.createTaskElement();
+  const inProgressTasks = document.getElementById('inProgressTasks');
+  inProgressTasks.appendChild(taskElement);
+}
+
+// Example usage
+addTaskToInProgress('New Task', 'Nov 25');
+      </script>
+</body>
+</html>
