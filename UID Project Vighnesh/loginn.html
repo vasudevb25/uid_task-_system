@@ -8,15 +8,31 @@
   
 </head>
 <body>
+  <script>
+    function validateForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Check if username and password are correct
+        if (username === "vighnesh" && password === "amrita") {
+            alert("Login successful!");
+            window.location.href = "dashboard.html";
+            return true; // Allow form submission
+        } else {
+            alert("Incorrect username or password. Please try again.");
+            return false; // Prevent form submission
+        }
+    }
+</script>
   <div class="wrapper">
-    <form action="">
+    <form onsubmit="return validateForm()">
       <h1>Login</h1>
       <div class="input-box">
-        <input type="text" placeholder="Username" required>
+        <input type="text" id="username" name="username" placeholder="Username" required >
         <i class='bx bxs-user'></i>
       </div>
       <div class="input-box">
-        <input type="password" placeholder="Password" required>
+        <input type="password" id="password" name="password" placeholder="Password" required >
         <i class='bx bxs-lock-alt' ></i>
       </div>
       <div class="remember-forgot">
@@ -24,13 +40,14 @@
         
       </div>
       
-
-      <button type="submit" class="btn"><a href="dashboard.html" class="btn">Login</a></button>
+       
+      <input type="button" value="Login"  class="btn" onclick="validateForm()">
       
       
       <div class="register-link">
         <p>Dont have an account? <a href="signup.html">Register</a></p>
       </div>
+
     </form>
   </div>
 </body>

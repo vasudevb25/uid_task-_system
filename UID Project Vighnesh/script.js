@@ -24,7 +24,7 @@ function createBox() {
     var membersPara = document.createElement("p");
     membersPara.textContent = "Active Members: " + limitedMembers;
     membersPara.classList.add("writings");
-    var randomColor = getRandomColor();//setting a random color for the box
+    var randomColor = getRandomColor();//set
     box.style.background = randomColor; //set the background color
     box.appendChild(taskNamePara);
     box.appendChild(dueDatePara);
@@ -33,5 +33,5 @@ function createBox() {
 }
 
 
-//calender
+
 
