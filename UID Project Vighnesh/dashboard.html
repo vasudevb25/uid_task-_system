@@ -276,73 +276,56 @@ prevNextIcon.forEach(icon => { // getting prev and next icons
 
 
 
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let items = document.querySelectorAll('.task');
+        let draggedItem = null;
 
-  var dragSrcEl = null;
-  
-  function handleDragStart(e) {
-    this.style.opacity = '0.1';
-    this.style.border = '3px dashed #c4cad3';
-    
-    dragSrcEl = this;
+        function handleDragStart(e) {
+            this.style.opacity = '1';
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/html', this.outerHTML);
+            draggedItem = this;
+        }
 
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/html', this.innerHTML);
-  }
+        function handleDragOver(e) {
+            if (e.preventDefault) {
+                e.preventDefault();
+            }
+            e.dataTransfer.dropEffect = 'move';
+            return false;
+        }
 
-  function handleDragOver(e) {
-    if (e.preventDefault) {
-      e.preventDefault();
-    }
+        function handleDrop(e) {
+            if (e.stopPropagation) {
+                e.stopPropagation();
+            }
+            if (draggedItem !== this) {
+                this.insertAdjacentHTML('beforebegin', e.dataTransfer.getData('text/html'));
+                draggedItem.remove();
+                // Reattach event listeners to the newly appended element
+                let newItem = this.previousElementSibling;
+                newItem.addEventListener('dragstart', handleDragStart, false);
+                newItem.addEventListener('dragover', handleDragOver, false);
+                newItem.addEventListener('drop', handleDrop, false);
+                newItem.addEventListener('dragend', handleDragEnd, false); // Add this line
+            }
+            return false;
+        }
 
-    e.dataTransfer.dropEffect = 'move';
-    
-    return false;
-  }
+        function handleDragEnd(e) {
+            this.style.opacity = '1'; // Reset opacity
+            this.style.backgroundColor = ''; // Reset background color
+        }
 
-  function handleDragEnter(e) {
-    this.classList.add('task-hover');
-  }
-
-  function handleDragLeave(e) {
-    this.classList.remove('task-hover');
-  }
-
-  function handleDrop(e) {
-    if (e.stopPropagation) {
-      e.stopPropagation(); // stops the browser from redirecting.
-    }
-    
-    if (dragSrcEl != this) {
-      dragSrcEl.innerHTML = this.innerHTML;
-      this.innerHTML = e.dataTransfer.getData('text/html');
-    }
-    
-    return false;
-  }
-
-  function handleDragEnd(e) {
-    this.style.opacity = '1';
-    this.style.border = 0;
-    
-    items.forEach(function (item) {
-      item.classList.remove('task-hover');
+        items.forEach(function (item) {
+            item.addEventListener('dragstart', handleDragStart, false);
+            item.addEventListener('dragover', handleDragOver, false);
+            item.addEventListener('drop', handleDrop, false);
+            item.addEventListener('dragend', handleDragEnd, false);
+        });
     });
-  }
-  
-  
-  let items = document.querySelectorAll('.task'); 
-  items.forEach(function(item) {
-    item.addEventListener('dragstart', handleDragStart, false);
-    item.addEventListener('dragenter', handleDragEnter, false);
-    item.addEventListener('dragover', handleDragOver, false);
-    item.addEventListener('dragleave', handleDragLeave, false);
-    item.addEventListener('drop', handleDrop, false);
-    item.addEventListener('dragend', handleDragEnd, false);
-  });
-});
-    </script>
+</script>
 <footer>
     <p>&copy Task Management System 2024</p>
 </footer>
